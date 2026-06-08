@@ -17,3 +17,36 @@ def generate_log(data):
     # STEP 4: Print a confirmation message with the filename
 
     pass
+from datetime import datetime
+
+def generate_log(log_data):
+    """
+    Generate a log file with timestamped filename.
+    
+    Args:
+        log_data: Must be a list of strings to write to the file
+        
+    Returns:
+        The filename created
+        
+    Raises:
+        ValueError: If log_data is not a list
+    """
+    # Check if log_data is a list - if not, raise ValueError
+    if not isinstance(log_data, list):
+        raise ValueError("log_data must be a list")
+    
+    # Create filename with pattern log_YYYYMMDD.txt
+    current_date = datetime.now().strftime('%Y%m%d')
+    filename = f"log_{current_date}.txt"
+    
+    # Write each log entry to the file
+    with open(filename, 'w') as file:
+        for entry in log_data:
+            file.write(f"{entry}\n")
+    
+    # Print confirmation message
+    print(f"Log written to {filename}")
+    
+    # Return the filename
+    return filename
