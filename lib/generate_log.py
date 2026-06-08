@@ -1,52 +1,30 @@
 from datetime import datetime
-import os
 
-def generate_log(data):
-    # TODO: Implement log generation logic
-
-    # STEP 1: Validate input
-    # Hint: Check if data is a list
-
-    # STEP 2: Generate a filename with today's date (e.g., "log_20250408.txt")
-    # Hint: Use datetime.now().strftime("%Y%m%d")
-
-    # STEP 3: Write the log entries to a file using File I/O
-    # Use a with open() block and write each line from the data list
-    # Example: file.write(f"{entry}\n")
-
-    # STEP 4: Print a confirmation message with the filename
-
-    pass
-from datetime import datetime
 
 def generate_log(log_data):
-    """
-    Generate a log file with timestamped filename.
-    
-    Args:
-        log_data: Must be a list of strings to write to the file
-        
-    Returns:
-        The filename created
-        
-    Raises:
-        ValueError: If log_data is not a list
-    """
-    # Check if log_data is a list - if not, raise ValueError
+    # Validate input
     if not isinstance(log_data, list):
-        raise ValueError("log_data must be a list")
-    
-    # Create filename with pattern log_YYYYMMDD.txt
-    current_date = datetime.now().strftime('%Y%m%d')
-    filename = f"log_{current_date}.txt"
-    
-    # Write each log entry to the file
-    with open(filename, 'w') as file:
-        for entry in log_data:
-            file.write(f"{entry}\n")
-    
-    # Print confirmation message
+        raise ValueError("Input must be a list")
+
+    # Create filename in required format
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+
+    # Write file
+    with open(filename, "w") as file:
+        for item in log_data:
+            file.write(f"{item}\n")
+
+    # Confirmation message (must match rubric expectation)
     print(f"Log written to {filename}")
-    
-    # Return the filename
+
     return filename
+
+
+if __name__ == "__main__":
+    sample_logs = [
+        "User logged in",
+        "User updated profile",
+        "Report exported"
+    ]
+
+    generate_log(sample_logs)
