@@ -1,5 +1,4 @@
 from datetime import datetime
-import sys
 
 def generate_log(log_data):
     """
@@ -31,21 +30,8 @@ def generate_log(log_data):
     
     return filename
 
-def fetch_api_data():
-    """
-    Optional: Fetch data from an API using requests library
-    """
-    import requests
-    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
-    if response.status_code == 200:
-        return response.json()
-    return {}
 
 if __name__ == "__main__":
     # Example usage for testing
     log_data = ["User logged in", "User updated profile", "Report exported"]
     generate_log(log_data)
-    
-    # Optional: Test the API fetch
-    # post = fetch_api_data()
-    # print("Fetched Post Title:", post.get("title", "No title found"))
